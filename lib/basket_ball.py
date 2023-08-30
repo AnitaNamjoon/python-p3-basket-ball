@@ -179,6 +179,27 @@ def game_dict():
                     "height_inches": 80,
                     "shoe_brand": "Jordan",
                 },
+                
             ]
         }
     }
+def average_rebounds_brands():
+    gameData = game_dict()
+    brand_rebounds = {}
+
+    for team in gameData.values():  
+     for player in team['players']:
+        brand = player['shoe_brand']
+        rebounds = player['rebounds_per_game']
+
+        if brand not in brand_rebounds:
+           brand_rebounds[brand] = []
+           brand_rebounds[brand].append(rebounds)
+
+    
+    for brands, rebounds_list in brand_rebounds.items():
+        avg_rebounds = sum(rebounds_list) /len(rebounds_list)
+
+        print(f"{brand}:{avg_rebounds:.2f}")
+
+average_rebounds_brands()
